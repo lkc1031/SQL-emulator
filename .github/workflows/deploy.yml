@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy static content to Pages 2
 
 on:
   # Runs on pushes targeting the default branch
