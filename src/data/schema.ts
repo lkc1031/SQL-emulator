@@ -6,12 +6,14 @@ export const initializeDatabase = () => {
   alasql('DROP TABLE IF EXISTS teachers');
   alasql('DROP TABLE IF EXISTS classes');
   alasql('DROP TABLE IF EXISTS enrollments');
+  alasql('DROP TABLE IF EXISTS books');
 
   // Create tables
   alasql('CREATE TABLE students (id INT, first_name STRING, last_name STRING, grade_level INT, age INT)');
   alasql('CREATE TABLE teachers (id INT, first_name STRING, last_name STRING, subject STRING)');
   alasql('CREATE TABLE classes (id INT, name STRING, teacher_id INT, room STRING)');
   alasql('CREATE TABLE enrollments (student_id INT, class_id INT, grade STRING)');
+  alasql('CREATE TABLE books (id INT, title STRING, author STRING, published_year INT, genre STRING)');
 
   // Insert data
   alasql(`INSERT INTO students VALUES 
@@ -48,6 +50,15 @@ export const initializeDatabase = () => {
     (5, 104, 'A'),
     (6, 102, 'B'),
     (6, 103, 'C')
+  `);
+
+  alasql(`INSERT INTO books VALUES 
+    (1, 'Harry Potter', 'J.K. Rowling', 1997, 'Fantasy'),
+    (2, 'The Hobbit', 'J.R.R. Tolkien', 1937, 'Fantasy'),
+    (3, '1984', 'George Orwell', 1949, 'Science Fiction'),
+    (4, 'To Kill a Mockingbird', 'Harper Lee', 1960, 'Fiction'),
+    (5, 'The Great Gatsby', 'F. Scott Fitzgerald', 1925, 'Fiction'),
+    (6, 'Dune', 'Frank Herbert', 1965, 'Science Fiction')
   `);
 };
 
@@ -95,6 +106,16 @@ export const schemaDefinition = [
       { name: 'student_id', type: 'INT' },
       { name: 'class_id', type: 'INT' },
       { name: 'grade', type: 'STRING' }
+    ]
+  },
+  {
+    name: 'books',
+    columns: [
+      { name: 'id', type: 'INT' },
+      { name: 'title', type: 'STRING' },
+      { name: 'author', type: 'STRING' },
+      { name: 'published_year', type: 'INT' },
+      { name: 'genre', type: 'STRING' }
     ]
   }
 ];

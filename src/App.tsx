@@ -27,15 +27,16 @@ export default function App() {
     }
   }, [isDbInitialized]);
 
-  const handleRunQuery = () => {
-    if (!query.trim()) return;
-    const res = runQuery(query);
+  const handleRunQuery = (queryToRun: string = query) => {
+    if (!queryToRun.trim()) return;
+    const res = runQuery(queryToRun);
     setResult(res);
   };
 
   const handleSelectExample = (exampleQuery: string) => {
     setQuery(exampleQuery);
-    setResult(null); // Clear previous result when selecting a new example
+    // Auto run the query when an example or preview is clicked
+    handleRunQuery(exampleQuery);
   };
 
   if (!isDbInitialized) {
@@ -61,7 +62,7 @@ export default function App() {
           <SqlEditor 
             query={query} 
             onChange={setQuery} 
-            onRun={handleRunQuery} 
+            onRun={() => handleRunQuery(query)} 
           />
         </div>
 

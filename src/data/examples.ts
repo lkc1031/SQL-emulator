@@ -44,5 +44,10 @@ JOIN classes ON enrollments.class_id = classes.id;`
 FROM enrollments 
 GROUP BY class_id 
 HAVING COUNT(*) > 1;`
+  },
+  {
+    title: '9. 自由練習 (Free Practice)',
+    description: '使用 books 表格自由練習 SQL',
+    query: `-- 在這裡自由輸入 SQL 語法\nSELECT * FROM books;`
   }
 ];
