@@ -1,6 +1,12 @@
 import alasql from 'alasql';
 
 export const initializeDatabase = () => {
+  // Drop tables if they exist to handle React StrictMode remounts
+  alasql('DROP TABLE IF EXISTS students');
+  alasql('DROP TABLE IF EXISTS teachers');
+  alasql('DROP TABLE IF EXISTS classes');
+  alasql('DROP TABLE IF EXISTS enrollments');
+
   // Create tables
   alasql('CREATE TABLE students (id INT, first_name STRING, last_name STRING, grade_level INT, age INT)');
   alasql('CREATE TABLE teachers (id INT, first_name STRING, last_name STRING, subject STRING)');
