@@ -15,7 +15,7 @@ export function Sidebar({ onSelectExample, activeExampleQuery }: SidebarProps) {
       <div className="p-4 border-b border-slate-200 bg-white">
         <h1 className="text-xl font-bold text-slate-800 flex items-center gap-2">
           <Database className="w-6 h-6 text-blue-600" />
-          SQL 學習模擬器
+          SQL Learning Simulator
         </h1>
       </div>
 
@@ -23,7 +23,7 @@ export function Sidebar({ onSelectExample, activeExampleQuery }: SidebarProps) {
         <div className="p-4">
           <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
             <TableIcon className="w-4 h-4" />
-            資料庫結構 (Schema)
+            Database Schema
           </h2>
           <div className="space-y-4">
             {schemaDefinition.map((table) => (
@@ -33,9 +33,9 @@ export function Sidebar({ onSelectExample, activeExampleQuery }: SidebarProps) {
                   <button 
                     onClick={() => onSelectExample(`SELECT * FROM ${table.name};`)}
                     className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                    title={`預覽 ${table.name} 資料`}
+                    title={`Preview ${table.name} data`}
                   >
-                    預覽
+                    Preview
                   </button>
                 </div>
                 <ul className="p-2 space-y-1">
@@ -54,7 +54,7 @@ export function Sidebar({ onSelectExample, activeExampleQuery }: SidebarProps) {
         <div className="p-4 border-t border-slate-200">
           <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
             <BookOpen className="w-4 h-4" />
-            學習範例 (Examples)
+            Learning Examples
           </h2>
           <div className="space-y-2">
             {sqlExamples.map((example, index) => {

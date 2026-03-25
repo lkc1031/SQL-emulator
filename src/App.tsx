@@ -42,7 +42,7 @@ export default function App() {
   if (!isDbInitialized) {
     return (
       <div className="flex items-center justify-center h-screen bg-slate-50 text-slate-500">
-        載入資料庫中...
+        Loading database...
       </div>
     );
   }
