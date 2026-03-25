@@ -1,0 +1,5 @@
+{
+  "name": "SQL Learning Simulator",
+  "description": "A frontend SQL simulator for K-12 students to learn SQL through interactive examples.",
+  "requestFramePermissions": []
+}
