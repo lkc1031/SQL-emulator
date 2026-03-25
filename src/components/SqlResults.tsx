@@ -32,9 +32,22 @@ export function SqlResults({ result }: SqlResultsProps) {
     );
   }
 
-  const data = result.data || [];
+  const data = result.data;
 
-  if (data.length === 0) {
+  // Handle INSERT, UPDATE, DELETE queries which return a number of affected rows
+  if (typeof data === 'number') {
+    return (
+      <div className="p-6 bg-slate-50 h-full flex flex-col items-center justify-center">
+        <CheckCircle2 className="w-10 h-10 text-emerald-500 mb-3" />
+        <p className="text-sm font-medium text-slate-600">語法成功執行</p>
+        <p className="text-xs text-slate-400 mt-1">影響了 {data} 筆資料 ({data} rows affected)</p>
+      </div>
+    );
+  }
+
+  const dataArray = Array.isArray(data) ? data : [];
+
+  if (dataArray.length === 0) {
     return (
       <div className="p-6 bg-slate-50 h-full flex flex-col items-center justify-center">
         <CheckCircle2 className="w-10 h-10 text-emerald-500 mb-3" />
@@ -44,7 +57,7 @@ export function SqlResults({ result }: SqlResultsProps) {
     );
   }
 
-  const columns = Object.keys(data[0]);
+  const columns = Object.keys(dataArray[0]);
 
   return (
     <div className="flex flex-col h-full bg-white">
@@ -54,7 +67,7 @@ export function SqlResults({ result }: SqlResultsProps) {
           查詢結果
         </div>
         <div className="text-xs text-slate-500 bg-white px-2 py-1 rounded border border-slate-200 shadow-sm">
-          共 {data.length} 筆資料
+          共 {dataArray.length} 筆資料
         </div>
       </div>
       <div className="flex-1 overflow-auto p-4">
@@ -74,7 +87,7 @@ export function SqlResults({ result }: SqlResultsProps) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-slate-100">
-              {data.map((row, rowIndex) => (
+              {dataArray.map((row, rowIndex) => (
                 <tr key={rowIndex} className="hover:bg-slate-50 transition-colors">
                   {columns.map((col, colIndex) => (
                     <td
