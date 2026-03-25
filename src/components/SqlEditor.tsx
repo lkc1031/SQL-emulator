@@ -28,6 +28,9 @@ export function SqlEditor({ query, onChange, onRun }: SqlEditorProps) {
         <div className="flex items-center gap-2 text-slate-600 font-medium text-sm">
           <Code2 className="w-4 h-4" />
           SQL 編輯器
+          <span className="text-xs font-normal text-slate-400 ml-2 hidden sm:inline-block">
+            (您可以自由修改此處的 SQL 語法並執行)
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <button
