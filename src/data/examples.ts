@@ -48,6 +48,20 @@ HAVING COUNT(*) > 1;`
   {
     title: '9. 自由練習 (Free Practice)',
     description: '使用 books 表格自由練習 SQL',
-    query: `-- 在這裡自由輸入 SQL 語法\nSELECT * FROM books;`
+    query: `-- 歡迎來到自由練習區！
+-- 您可以在這裡自由修改、新增或刪除資料 (重新整理網頁即可恢復預設資料)
+
+-- 1. 查詢資料 (預設)
+SELECT * FROM books;
+
+-- 2. 新增資料 (您可以取消下方的註解來測試)
+-- INSERT INTO books (id, title, author, published_year, genre) 
+-- VALUES (7, 'The Lord of the Rings', 'J.R.R. Tolkien', 1954, 'Fantasy');
+
+-- 3. 修改資料
+-- UPDATE books SET genre = 'Epic Fantasy' WHERE id = 7;
+
+-- 4. 刪除資料
+-- DELETE FROM books WHERE id = 7;`
   }
 ];

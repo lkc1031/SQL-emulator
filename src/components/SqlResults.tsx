@@ -45,7 +45,27 @@ export function SqlResults({ result }: SqlResultsProps) {
     );
   }
 
-  const dataArray = Array.isArray(data) ? data : [];
+  let dataArray = Array.isArray(data) ? data : [];
+
+  // Handle multi-statement queries (alasql returns an array of results)
+  // If the first element is an array or a number, it's likely a multi-statement result
+  if (dataArray.length > 0 && (Array.isArray(dataArray[0]) || typeof dataArray[0] === 'number')) {
+    // Get the last result that is an array (usually the last SELECT statement)
+    // Or just the very last result if no arrays are found
+    const lastResult = dataArray[dataArray.length - 1];
+    
+    if (typeof lastResult === 'number') {
+      return (
+        <div className="p-6 bg-slate-50 h-full flex flex-col items-center justify-center">
+          <CheckCircle2 className="w-10 h-10 text-emerald-500 mb-3" />
+          <p className="text-sm font-medium text-slate-600">語法成功執行</p>
+          <p className="text-xs text-slate-400 mt-1">影響了 {lastResult} 筆資料 ({lastResult} rows affected)</p>
+        </div>
+      );
+    }
+    
+    dataArray = Array.isArray(lastResult) ? lastResult : [];
+  }
 
   if (dataArray.length === 0) {
     return (
